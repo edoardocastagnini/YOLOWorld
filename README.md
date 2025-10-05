@@ -72,12 +72,14 @@ Each combination of backbone/decoder and transformer head prune rates was tested
 ---
 
 ## 📁 Repository Structure
+
 ├── distillation/                          # Knowledge distillation experiments
 │   ├── datasets/                          # Dataset directory
 │   │   └── README.md                      # Instructions for dataset download and structure
 │   │
 │   ├── ultralytics/                       # Modified Ultralytics YOLO base code
 │   │   ├── cfg/                           # Config files (includes distillation.yaml and PhiNet YAML)
+│   │   │   └── models/v8/yolov8-worldv2-phinet.yaml
 │   │   ├── data/                          # Dataset configs (e.g. coco.yaml)
 │   │   ├── distillation/                  # Custom distillation loss and utilities
 │   │   ├── engine/                        # Training engine and DDP setup
