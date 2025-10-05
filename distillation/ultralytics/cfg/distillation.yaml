@@ -1,4 +1,4 @@
-teacher_checkpoint: "s-epoch100.pt"  
+teacher_checkpoint: "ywv2-s-trained100epochs.pt"  
 student_model: "yolov8s-worldv2-phinet.yaml"  
 data: "coco.yaml"  # Dataset
 epochs: 50 
