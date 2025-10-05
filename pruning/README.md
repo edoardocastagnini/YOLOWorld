@@ -1,6 +1,6 @@
 # ✂️ Pruning
 
-Structured pruning for **YOLOWorld + PhiNet**:
+Structured pruning for **YOLOWorld with PhiNet backbone**:
 - Backbone & detection decoder pruned with **Torch-Pruning**
 - Transformer head (C2fAttn) pruned with a **custom** routine
 - Three importance criteria: **Magnitude**, **Taylor**, **LAMP**
