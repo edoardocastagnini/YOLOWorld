@@ -1,5 +1,4 @@
-#teacher_checkpoint: "runs/detect/ywv2-ob365-phinet_s(3.5M)-head_s(7.5M) - (tot11M)/weights/40epoch.pt"  # Modello insegnante
-teacher_checkpoint: "s-epoch100.pt"  # Modello insegnante
-student_model: "yolov8s-worldv2-phinet.yaml"  # Modello studente
+teacher_checkpoint: "s-epoch100.pt"  
+student_model: "yolov8s-worldv2-phinet.yaml"  
 data: "coco.yaml"  # Dataset
-epochs: 50  # Numero di epoche
+epochs: 50 
