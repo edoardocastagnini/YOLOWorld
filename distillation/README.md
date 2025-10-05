@@ -20,8 +20,8 @@ This folder contains the implementation of **knowledge distillation** for the cu
 
 To start the distillation process, run:
 ```bash
-python distill.py
-```
+python distill.py```
+
 
 	In this file, specify:
 	    - The **teacher checkpoint path** (pretrained model to distill from)  
