@@ -24,5 +24,5 @@ python distill.py
 ```
 
 Within the distill.py script, you can modify:
-	•	The standard YOLO losses (e.g. box, cls, dfl losses)
-	•	The distillation loss weight, which balances the teacher–student learning
+	- The standard YOLO losses (e.g. box, cls, dfl losses)
+	- The distillation loss weight, which balances the teacher–student learning
