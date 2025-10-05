@@ -1,6 +1,6 @@
 # 🧠 YOLOWorld – PhiNet Extension with Distillation & Pruning
 
-This repository extends the original [Ultralytics YOLOWorld](https://github.com/ultralytics/ultralytics) framework to explore **model compression techniques** — specifically **Knowledge Distillation** and **Structured Pruning** — applied to a **custom YOLOWorld architecture** with a **PhiNet backbone**.
+This repository extends the original [Ultralytics YOLOWorld](https://github.com/ultralytics/ultralytics) framework to explore **model compression techniques** — specifically **Knowledge Distillation** and **Pruning** — applied to a **custom YOLOWorld architecture** with a **PhiNet backbone**.
 
 ---
 
@@ -39,7 +39,8 @@ Several experiments were carried out:
 - Varying the weight of the standard YOLO losses (original, halved, quartered).  
 - Testing different strengths of the distillation term.  
 - Distilling:  
-  - **YOLOWorld-N (student)** from **YOLOWorld-N (teacher)**  
+  - **YOLOWorld-N (student)** from **YOLOWorld-N (teacher)**
+  - **YOLOWorld-N (student)** from **YOLOWorld-S (teacher)**  
   - **YOLOWorld-S (student)** from **YOLOWorld-S (teacher)**  
 
 The goal was to find the optimal trade-off between **accuracy**, **stability**, and **student compactness**.
@@ -53,9 +54,9 @@ The pruning stage focused on **reducing model size and complexity** while mainta
 Two distinct approaches were used:
 
 - **Backbone + Decoder** → standard *Torch-Pruning* workflow.  
-- **Transformer Head (C2fAttention)** → custom pruning method developed for this project.
+- **Transformer Head (C2fAttn modules)** → custom pruning method developed for this project.
 
-This was necessary because the **C2fAttention layers** in YOLOWorld are **not natively compatible** with Torch-Pruning dependency tracing.  
+This was necessary because the **C2fAttn layers** in YOLOWorld are **not natively compatible** with Torch-Pruning dependency tracing.  
 A custom implementation handles zeroing and structural pruning safely within the transformer head.
 
 ### 🧠 Importance Criteria
