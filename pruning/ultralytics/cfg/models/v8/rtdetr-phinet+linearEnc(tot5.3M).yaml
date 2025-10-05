@@ -1,0 +1,73 @@
+# Ultralytics YOLO 🚀, AGPL-3.0 license
+# RT-DETR-ResNet50 object detection model with P3-P5 outputs.
+
+# Parameters
+nc: 80 # number of classes
+scales: # model compound scaling constants, i.e. 'model=yolov8n-cls.yaml' will call yolov8-cls.yaml with scale 'n'
+  # [depth, width, max_channels]
+  l: [1.00, 1.00, 1024]
+
+backbone:
+  # [from, repeats, module, args]
+  - [-1, 1, PhiNet, [[3,640,640], 3, 1.78, 1.8, 1.2, False, 10, False, [4,5], 0.0, 2, True, False, False, True, True, 1, [5], 72,48,72]] # 0 128,32,32
+  - [-1, 1, PhiNetConvBlock, [[128,80.0,80.0], 1.9680000000000002, 2, 256, True, 4, True, True, 3, 0.05, 1]] # 1  256,16,16
+  - [-1,1, PhiNetConvBlock, [[256,40.0,40.0], 2.16, 2, 512, True, 5, True, True, 3, 0.05, 1 ]] # 2 512,8,8
+
+head:
+  #512,8,8
+  - [-1, 1, Conv, [256, 1, 1, None, 1, 1, False]] # 3
+  #256,8,8
+  - [-1, 1, AIFI, [512, 8]] #4
+  #256,8,8
+
+  - [-1, 1, Conv, [256, 1, 1]] # 5
+  #256,8,8
+
+  #add a upsampling layer
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # 6
+
+  #256,16,16
+
+#takes the 256,16,16 that outputs #1
+  - [1, 1, Conv, [256, 1, 1, None, 1, 1, False]] # 7
+  #256,16,16
+
+  - [[-2, -1], 1, Concat, [1]] #8
+  #concatenates the 256,16,16 from #7 #6
+  #512,16,16
+  - [-1, 3, RepC3, [128]] # 9
+  #256,16,16
+  - [-1, 1, Conv, [256, 1, 1]] # 10
+  #256,16,16
+
+  - [-1, 1, nn.Upsample, [None, 2, "nearest"]] # 11
+  #256,32,32
+
+  #takes the 128,32,32 that outputs #0
+  - [0, 1, Conv, [256, 1, 1, None, 1, 1, False]] # 12
+  #256,32,32
+  
+  - [[-2, -1], 1, Concat, [1]] # cat backbone P4 #13
+  #concatenates the 256,32,32 from #12 #11
+  #512,32,32
+  - [-1, 3, RepC3, [104]] # X3 (#14), fpn_blocks.1
+  #256,32,32
+
+  - [-1, 1, Conv, [256, 3, 2]] # 15, downsample_convs.0
+  #256,16,16
+  - [[-1, 9], 1, Concat, [1]] # cat Y4 #16
+  #concatenates the 256,16,16 from #9 #14
+  #512,16,16
+  - [-1, 3, RepC3, [104]] # F4 (#17), pan_blocks.0
+  #256,16,16
+  - [-1, 1, Conv, [256, 3, 2]] # 18, downsample_convs.1
+  #256,8,8
+  - [[-1, 5], 1, Concat, [1]] # cat Y5 #19
+  #concatenates the 256,8,8 from #18, #5
+  #512,8,8
+  - [-1, 3, RepC3, [104]] # F5 (#20), pan_blocks.1
+  #256,8,8
+
+
+#receives layer of shapes
+  - [[14, 17, 20], 1, WorldDetect, [nc, 512, True]] # Detect(P3, P4, P5) #21
