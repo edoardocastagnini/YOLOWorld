@@ -1,4 +1,4 @@
-# 🧠 YOLOWorld – PhiNet Extension with Distillation & Pruning
+# YOLOWorld – PhiNet Extension with Distillation & Pruning
 
 This repository extends the original [Ultralytics YOLOWorld](https://github.com/ultralytics/ultralytics) framework to explore **model compression techniques** — specifically **Knowledge Distillation** and **Pruning** — applied to a **custom YOLOWorld architecture** with a **PhiNet backbone**.
 
