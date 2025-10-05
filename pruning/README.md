@@ -28,7 +28,7 @@ Structured pruning for **YOLOWorld with PhiNet backbone**:
 
 ## 🚀 Usage
 
-### Magnitude
+### Example using Magnitude importance criteria
 ```bash
 python ywv2_pruning_magn.py \
   --model ywv2-n-trained100epochs.pt \
