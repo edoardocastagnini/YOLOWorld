@@ -933,7 +933,7 @@ if __name__ == "__main__":
     parser.add_argument('--target-prune-rate', default=0.7, type=float, help='Target pruning rate')
     parser.add_argument('--head-prune-rate', default=0.7, type=float, help='Target head pruning rate inside C2fAttn')
     parser.add_argument('--max-map-drop', default=0.2, type=float, help='Allowed maximum map drop after fine-tuning')
-    parser.add_argument('--finetune-epochs', default=500, type=int, help='Number of fine-tuning epochs')
+    parser.add_argument('--finetune-epochs', default=5, type=int, help='Number of fine-tuning epochs')
 
     args = parser.parse_args()
 
