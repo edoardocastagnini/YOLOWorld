@@ -22,5 +22,7 @@ This folder contains the implementation of **knowledge distillation** for the cu
 	- The standard YOLO losses (e.g. box, cls, dfl losses)
 	- The distillation loss weight, which balances the teacher–student learning
 
-
-
+2. To start the distillation process, run:
+```bash
+python distill.py
+   
