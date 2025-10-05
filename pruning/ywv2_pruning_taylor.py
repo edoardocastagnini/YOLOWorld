@@ -941,8 +941,8 @@ if __name__ == "__main__":
     #     raise RuntimeError("CUDA is not available. Please run this script on a machine with a GPU.")
 
 
-    #RUN_DIR = get_unique_run_dir()
-    #prune(args)
+    RUN_DIR = get_unique_run_dir()
+    prune(args)
     #breakpoint()
     prune_zeroed_weights(args)
 
