@@ -16,7 +16,6 @@ scales: # model compound scaling constants, i.e. 'model=yolov8n.yaml' will call 
 
 # YOLOv8.0n backbone
 
-#NB: I CANALI DEFINITI QUA IN YOLOn VENGONO SCALATI DI 0.25
 
 # backbone: #n 3.1M
 #   # [from, repeats, module, args]
@@ -30,11 +29,6 @@ backbone: #s 11M
   - [-1, 1, PhiNetConvBlock, [[128,80.0,80.0], 5.2, 2, 256, True, 4, True, True, 3, 0.05, 1]] # 1  256,40,40
   - [-1, 1, PhiNetConvBlock, [[256,40.0,40.0], 5.2, 2, 512, True, 5, True, True, 3, 0.05, 1 ]] # 2 512,20,20
 
-# backbone: #9.4M con s
-#   # [from, repeats, module, args]
-#   - [-1, 1, PhiNet, [[3,640,640], 6, 2.67, 3.0, 1.5, False, 10, False, [7,8], 0.0, 2, True, False, False, True, True, 1, [8], 48,24,48]] # 0 128,32,32
-#   - [-1, 1, PhiNetConvBlock, [[128,80.0,80.0], 2.2, 2, 256, True, 4, True, True, 3, 0.05, 1]] # 1  256,16,16
-#   - [-1, 1, PhiNetConvBlock, [[256,40.0,40.0], 3.2, 2, 512, True, 5, True, True, 3, 0.05, 1 ]] # 2 512,8,8
 
 # YOLOv8.0n head
 head:
