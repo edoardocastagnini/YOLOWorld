@@ -1,4 +1,4 @@
-# 🧠 Distillation
+# Distillation
 
 This folder contains the implementation of **knowledge distillation** for the custom **YOLOWorld + PhiNet** model, based on the Ultralytics YOLO framework.
 
@@ -21,3 +21,7 @@ This folder contains the implementation of **knowledge distillation** for the cu
 To start the distillation process, run:
 ```bash
 python distill.py
+
+Within the distill.py script, you can modify:
+	•	The standard YOLO losses (e.g. box, cls, dfl losses)
+	•	The distillation loss weight, which balances the teacher–student learning
