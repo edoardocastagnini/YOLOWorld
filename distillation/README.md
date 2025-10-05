@@ -18,9 +18,9 @@ This folder contains the implementation of **knowledge distillation** for the cu
 
 ## 🚀 Training
 
-Within the distill.py script, you can modify:
-	- The standard YOLO losses (e.g. box, cls, dfl losses)
-	- The distillation loss weight, which balances the teacher–student learning
+	Within the distill.py script, you can modify:
+		- The standard YOLO losses (e.g. box, cls, dfl losses)
+		- The distillation loss weight, which balances the teacher–student learning
 
 To start the distillation process, run:
 ```bash
