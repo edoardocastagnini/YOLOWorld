@@ -597,7 +597,7 @@ def make_hooks(model, masks):
 
 def prune(args):
     # load trained yolov8 model
-    model = YOLOWorld('n-epoch100.pt')  # or any other yolov8 model
+    model = YOLOWorld('ywv2-n-trained100epochs.pt')  # or any other yolov8 model
 
     pruning_cfg = yaml_load(check_yaml(args.cfg))
     batch_size = pruning_cfg['batch']
