@@ -668,8 +668,8 @@ def zero_c2fattn_heads(model, head_ratio: float, log_file: Path):
 
 
 def prune(args):
-    # load trained yolov8 model
-    model = YOLOWorld('n-epoch100.pt')  # or any other yolov8 model
+    
+    model = YOLOWorld(args.model) 
 
     pruning_cfg = yaml_load(check_yaml(args.cfg))
     batch_size = pruning_cfg['batch']
@@ -843,8 +843,8 @@ def prune(args):
 
 def prune_zeroed_weights(args):
 
-   # path = RUN_DIR / "zeroed_weights_finetune" / "weights" / "last.pt"
-    path = Path("runs/detect/prune_run_0/zeroed_weights_finetune/weights/last.pt")
+    path = RUN_DIR / "zeroed_weights_finetune" / "weights" / "last.pt"
+    #path = Path("runs/detect/prune_run_0/zeroed_weights_finetune/weights/last.pt")
     model = YOLOWorld(str(path))  # or any other yolov8 model
 
     model.model.train()
@@ -903,19 +903,19 @@ def prune_zeroed_weights(args):
 
         #PRUNE ALSO TRANSFORMER HEAD (C2FATTN LAYERS)
 
-       # log_file = RUN_DIR / "zeroed_params.txt"
-        log_file = Path("runs/detect/prune_run_0/zeroed_params.txt")
+        log_file = RUN_DIR / "zeroed_params.txt"
+        #log_file = Path("runs/detect/prune_run_0/zeroed_params.txt")
         structurally_prune_c2fattn_heads(model.model, log_file)
         fix_attn_invariants(model.model)                     
         fix_proj_bn_after_head_prune(model.model)
 
         # #save the pt model
-        #pruned_model_path = RUN_DIR / "pruned_model.pt"
-        pruned_model_path = Path("runs/detect/prune_run_0/pruned_model.pt")
+        pruned_model_path = RUN_DIR / "pruned_model.pt"
+        #pruned_model_path = Path("runs/detect/prune_run_0/pruned_model.pt")
         model.save(pruned_model_path)
         #save the state dict
-       # pruned_state_dict_path = RUN_DIR / "pruned_model_dict.pt"
-        pruned_state_dict_path = Path("runs/detect/prune_run_0/pruned_model_dict.pt")
+        pruned_state_dict_path = RUN_DIR / "pruned_model_dict.pt"
+       # pruned_state_dict_path = Path("runs/detect/prune_run_0/pruned_model_dict.pt")
         torch.save(model.model.state_dict(), pruned_state_dict_path)
         del pruner
     
@@ -928,6 +928,7 @@ if __name__ == "__main__":
     parser.add_argument('--cfg', default='ultralytics/cfg/default.yaml',
                         help='Pruning config file.'
                              ' This file should have same format with ultralytics/yolo/cfg/default.yaml')
+    parser.add_argument('--model', default='n-epoch100.pt', type=str, help='Path to the YOLOv8 model file')
     parser.add_argument('--iterative-steps', default=1, type=int, help='Total pruning iteration step')
     parser.add_argument('--target-prune-rate', default=0.7, type=float, help='Target pruning rate')
     parser.add_argument('--head-prune-rate', default=0.7, type=float, help='Target head pruning rate inside C2fAttn')
