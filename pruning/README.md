@@ -17,10 +17,10 @@ Structured pruning for **YOLOWorld with PhiNet backbone**:
 
 ## ⚙️ Arguments (edit via `argparse` in the script)
 
-- `--model` : path to the trained YOLO-World checkpoint to prune (e.g., `runs/.../weights/best.pt`)
-- `--target_prune_rate` : prune rate for **backbone + decoder** (e.g., `0.4` → keep 60%)
-- `--head_prune_rate` : prune rate for **transformer head** (e.g., `0.5`)
-- `--finetune_epochs` : epochs for **post-pruning fine-tuning** (e.g., `50`)
+- `--model` : path to the trained YOLO-World checkpoint to prune (e.g., `ywv2-n-trained100epochs.pt`)
+- `--target_prune_rate` : prune rate for **backbone + decoder** (e.g., `0.4` → range from 0.1 to 0.9
+- `--head_prune_rate` : prune rate for **transformer head** (e.g., `0.5` → range from 0.1 to 0.7)
+- `--finetune_epochs` : epochs for **post-pruning fine-tuning** (e.g., `5`)
 
 > These are the only knobs intended to be changed for experiments.
 
