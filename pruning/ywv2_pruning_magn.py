@@ -584,8 +584,8 @@ def zero_c2fattn_heads(model, head_ratio: float, log_file: Path):
 
 
 def prune(args):
-    # load trained yolov8 model
-    model = YOLOWorld('n-epoch100.pt')  # or any other yolov8 model
+
+    model = YOLOWorld(args.model)  
 
     pruning_cfg = yaml_load(check_yaml(args.cfg))
     batch_size = pruning_cfg['batch']
@@ -833,6 +833,7 @@ if __name__ == "__main__":
     parser.add_argument('--cfg', default='ultralytics/cfg/default.yaml',
                         help='Pruning config file.'
                              ' This file should have same format with ultralytics/yolo/cfg/default.yaml')
+    parser.add_argument('--model', default='n-epoch100.pt', help='Pretrained model path or name')
     parser.add_argument('--iterative-steps', default=1, type=int, help='Total pruning iteration step')
     parser.add_argument('--target-prune-rate', default=0.5, type=float, help='Target pruning rate')
     parser.add_argument('--head-prune-rate', default=0.2, type=float, help='Target head pruning rate inside C2fAttn')
