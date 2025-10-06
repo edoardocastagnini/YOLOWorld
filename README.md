@@ -78,5 +78,7 @@ In the root directory, two pretrained YOLOWorld–PhiNet checkpoints are provide
 Both models were trained for 100 epochs using the original [WorldTrainerFromScratch](https://github.com/ultralytics/ultralytics/blob/main/ultralytics/models/yolo/world/train_world.py) provided by Ultralytics and can be used directly for evaluation, fine-tuning, pruning or as teacher models in distillation experiments 
 
 An additional script, inference.py, allows you to run inference on custom images using any of the trained or pruned models:
+```bash
+python inference.py --model path/to/model.pt --image path/to/image.jpg
 
-`python inference.py --model path/to/model.pt --classes "class1, class2, class3 ..." --image path/to/image.jpg`.
+
