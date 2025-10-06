@@ -81,4 +81,6 @@ An additional script, inference.py, allows you to run inference on custom images
 ```bash
 python inference.py --model path/to/model.pt --image path/to/image.jpg
 
-
+Since YOLOWorld is an Open-Vocabulary model, you can also specify custom class names at inference time using the --classes argument, followed by a comma-separated list of class names enclosed in quotes:
+```bash
+python inference.py --model path/to/model.pt --image path/to/image.jpg --classes "dog,cat,person"
