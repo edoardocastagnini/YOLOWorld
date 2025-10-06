@@ -79,7 +79,7 @@ Both models were trained for 100 epochs using the original [WorldTrainerFromScra
 
 An additional script, inference.py, allows you to run inference on custom images using any of the trained or pruned models:
 ```bash
-python inference.py --model path/to/model.pt --image path/to/image.jpg
+python inference.py --model path/to/model.pt --image path/to/image.jpg```
 
 Since YOLOWorld is an Open-Vocabulary model, you can also specify custom class names at inference time using the --classes argument, followed by a comma-separated list of class names enclosed in quotes:
 ```bash
